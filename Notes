@@ -1,0 +1,20 @@
+Restful routing 
+
+index   get '/posts'             has a list of all the post with links to the detail pages (shoew pages)
+
+show    get 'posts/:id'         has detailed content fo a single post (matching he :id parameter) and 
+                                also a delete button for deletng it. 
+
+new     get '/posts/new'        has form to create new posts 
+create  post '/posts'           handles form submission and redirects to another route (either post
+                                index of the newly created post's show page )
+
+edit    get '/posts/:id/edit'   has form to edit an existing post 
+update  patch '/posts/:id'      handles form submission and redirects to another route (either posts)
+        put '/posts/:id         index or the updated posts show page)
+destroy delete 'posts/:id'      handles form submission to delete a posts and redirects to another sroute 
+
+
+
+resources 
+sinatra docs - sinatrarb.com/intro.html 
