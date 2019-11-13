@@ -6,6 +6,8 @@ end
 
 use Rack::MethodOverride
 use SessionsController
-use PostsController 
+# use PostsController 
 use StudentUsersController
 run ApplicationController
+use AnswersController
+use QuestionsController
