@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191108191307) do
+ActiveRecord::Schema.define(version: 20191113020503) do
+
+  create_table "answers", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer  "student_id"
@@ -29,12 +37,12 @@ ActiveRecord::Schema.define(version: 20191108191307) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "inquiry"
-    t.integer  "student_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "student_user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  create_table "students", force: :cascade do |t|
+  create_table "student_users", force: :cascade do |t|
     t.string   "name"
     t.string   "age"
     t.string   "grade"
@@ -42,6 +50,7 @@ ActiveRecord::Schema.define(version: 20191108191307) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "email"
   end
 
 end
