@@ -1,6 +1,5 @@
 class Question < ActiveRecord::Base
 
-    belongs_to :student
-    has_many :comments
-    belongs_to :lesson
+    belongs_to :student_user
+    has_many :answer 
 end
