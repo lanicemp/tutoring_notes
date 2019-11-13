@@ -1,0 +1,10 @@
+<h1> Hello, <%= params[:name] || "world" %></h1>
+
+<form>
+<input type="text" name="name" />
+<input type="submit" value="Add your name" />
+</form>
+
+<ul>
+<% @posts.all.each do |post| %>
+    <li><a href "/posts/#{posts.id}"><%= post.title%></a></li>
