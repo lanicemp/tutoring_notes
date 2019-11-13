@@ -8,27 +8,15 @@ class SessionsController < ApplicationController
       erb :"sessions/login.html"
     end 
 
-    get "/create_account" do 
-      erb :"sessions/create_account.html"
-    end
-
-    post "/create_account" do
-      user = StudentUser.new(:username => params[:username], :password => params[:password])
-      if user.save
-        redirect "/login"
-        else
-        redirect "/failure"
-      end
-    end
-
     post "/sessions" do 
         login(params[:email], params[:password])
-        redirect "/posts"
+
+        redirect "/questions"
     end 
 
     get '/logout' do 
         logout!
-        redirect '/posts'
+        redirect '/'
     end 
 
     get "/failure" do
