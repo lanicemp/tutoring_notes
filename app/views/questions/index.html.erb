@@ -1,0 +1,23 @@
+<h1>Currently Asked Questions </h1>
+<br>
+<% @questions.each do |question| %>
+
+    <p><%= question.inquiry %></p>
+    <!--Make a link to the questions show page.  On the question show page dispay the answers 
+    and a form to create new answers to that indivual question. 
+    On this page have a form to create a new question. -->
+<% end %>
+<p>
+    <form action="/questions" method="POST"> 
+        <br>
+        <label for name= "question">Ask a Question:</label>
+        <br>
+        <textarea name="question" rows="3"></textarea>
+        <br>
+        <br>
+        <input type="submit" input type="submit" /> 
+    </form>
+</p>
+
+    
+
