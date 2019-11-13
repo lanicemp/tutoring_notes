@@ -12,19 +12,22 @@ class ApplicationController < Sinatra::Base
   helpers do 
     
     def logged_in?
-      !!sesssion[:email]
+      session.has_key?(:email)
     end 
 
     def login(email, password)
       
       student = StudentUser.find_by(:email => email)
-    
-      if student &&  user.authenticate(password)
-      session[:email] = student.email
+      if student &&  student.authenticate(password)
+        session[:email] = student.email
       else 
         redirect '/login'
       end 
     end 
+
+    def current_user
+      StudentUser.find_by_email(session[:email]) 
+    end
 
     def logout!
       session.clear
@@ -34,18 +37,6 @@ class ApplicationController < Sinatra::Base
 
 end 
 
-
-    # get "/" do
-    #   erb :welcome
-    # end
-
-    # get "/login" do 
-    #   erb :"sessions/login.html"
-    # end 
-
-    # get "/create_account" do 
-    #   erb :"sessions/create_account"
-    # end 
 
 
       
