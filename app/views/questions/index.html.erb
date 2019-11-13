@@ -1,21 +1,40 @@
+<div class="container">
+<header><img class="alignnone wp-image-4362856 aligncenter" 
+src="https://nkytutoring.com/wp-content/uploads/2018/02/math-problems-300x200.jpg" 
+alt="" width="335" height="223" 
+srcset="https://nkytutoring.com/wp-content/uploads/2018/02/math-problems-300x200.jpg 300w, https://nkytutoring.com/wp-content/uploads/2018/02/math-problems-768x512.jpg 768w, https://nkytutoring.com/wp-content/uploads/2018/02/math-problems-1024x683.jpg 1024w, https://nkytutoring.com/wp-content/uploads/2018/02/math-problems-1080x720.jpg 1080w" sizes="(max-width: 335px) 100vw, 335px"></header>
+<div class="col-md-8 col-md-offset-2">
+
 <h1>Currently Asked Questions </h1>
 <br>
-<% @questions.each do |question| %>
-
-    <p><%= question.inquiry %></p>
-    <!--Make a link to the questions show page.  On the question show page dispay the answers 
+<!--Make a link to the questions show page.  On the question show page dispay the answers 
     and a form to create new answers to that indivual question. 
-    On this page have a form to create a new question. -->
+     -->
+
+<% @questions.each.with_index(1) do |question, index| %>
+
+    <p><%="#{index}."%>
+    <a href="/questions/<%=question.id%>"> <%= question.inquiry %></a>
+    </p>
+
 <% end %>
 <p>
-    <form action="/questions" method="POST"> 
+    <form action="/question" method="POST"> 
         <br>
-        <label for name= "question">Ask a Question:</label>
+        <label for name= "inquiry_label">Ask a Question:</label>
         <br>
         <textarea name="question" rows="3"></textarea>
         <br>
         <br>
         <input type="submit" input type="submit" /> 
+    </form>
+</p>
+<p>
+    <form action="/logout" method="GET"> 
+        <br>
+        <label for name= "logout">Click below to Logout:</label>
+        <br>
+        <input type="submit" value="logout" /> 
     </form>
 </p>
 
