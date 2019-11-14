@@ -12,7 +12,17 @@ class AnswersController < ApplicationController
 
   # POST: /answers
   post "/answers" do
-    redirect "/answers"
+    
+    @answer = Answer.new(answer: params[:answer])
+    @answer.student_user = current_user
+    if logged_in? && @answer.save 
+      redirect "//questions/:id"
+    elsif @answer.errors.any? 
+      @answers = Answers.all
+      erb :'/questions'
+    else 
+      erb :'/'
+    end 
   end
 
   # GET: /answers/5
