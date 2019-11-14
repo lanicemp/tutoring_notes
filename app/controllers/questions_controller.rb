@@ -41,7 +41,8 @@ class QuestionsController < ApplicationController
 
   # GET: /questions/5
   get "/questions/:id" do
-    if logged_in?
+    @question = Question.find_by(:id => params[:id])
+    if logged_in? 
       erb :"/questions/show.html"
     else 
       erb :'/'
