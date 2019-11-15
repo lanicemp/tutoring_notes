@@ -1,1 +1,23 @@
 <h1>Insert the form to create a new instance of your model.</h1>
+
+<!--<h2><%= @question.inquiry %></h2>-->
+
+@answers.each.with_index(1) do |answer, index| %>
+
+    <p><%="#{index}."%>
+    <a href="/questions/<%=question.id%>"> <%= question.inquiry %></a>
+    </p>
+
+<p>
+    <form action="/questions/<%=@question.id%>/answers" method="POST"> 
+        <input type="hidden" name="question_id" value="<%=@question.id%>"/>
+        <br>
+        <label for name= "description">Post your answer or comment:</label>
+        <br>
+        <textarea name="description" rows="3"></textarea>
+        <br>
+        <br>
+        <input type="submit" input type="submit" /> 
+    </form>
+</p>
+    
