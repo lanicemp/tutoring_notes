@@ -6,22 +6,32 @@ class AnswersController < ApplicationController
   end
 
   # GET: /answers/new
-  get "/answers/new" do
-    erb :"/answers/new.html"
+  get "/questions/:question_id/answers" do
+  
+    @answers = Answer.find(params[:question_id])
+    @question = (params[:question_id])
+    if @answers == @question
+      erb :"/answers/new.html"
+    end
+    
   end
 
   # POST: /answers
-  post "/answers" do
+  post "/questions/:question_id/answers" do
+    #@question = (params[:question_id])
+    @question = Question.find_by id: params[:question_id]
     
-    @answer = Answer.new(answer: params[:answer])
-    @answer.student_user = current_user
-    if logged_in? && @answer.save 
-      redirect "//questions/:id"
-    elsif @answer.errors.any? 
-      @answers = Answers.all
-      erb :'/questions'
+    if @question &&  !params[:description].empty?
+      @answer = Answer.new(description: params[:description]) 
+      @answer.question = @question
+      @answer.student_user = current_user
+      @answer.save
+      binding.pry
+
+      #@answer = Answer.create(description: params[:description], question_id: params[:question_id])
+      redirect "/questions/#{@question.id}"
     else 
-      erb :'/'
+      erb :'/questions'
     end 
   end
 
