@@ -3,5 +3,5 @@ class Answer < ActiveRecord::Base
     belongs_to :question
     belongs_to :student_user
 
-    validates :answer, uniqueness: true
+    validates :description, uniqueness: true
 end
