@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
   post "/questions" do
     @question = Question.new(inquiry: params[:question])
     @question.student_user = current_user
-    if logged_in? && @question.save 
+    if logged_in? && @question.save
       redirect "/questions"
     elsif @question.errors.any? 
       @questions = Question.all
@@ -43,6 +43,7 @@ class QuestionsController < ApplicationController
   get "/questions/:id" do
     @question = Question.find_by(:id => params[:id])
     if logged_in? 
+    
       erb :"/questions/show.html"
     else 
       erb :'/'
