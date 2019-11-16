@@ -1,7 +1,16 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1><%= @question.inquiry %></h1>
+<br>
+<h2>Answers and Comments Below</h2>
+<br>
+<% @question.answers.each.with_index(1) do |answer, index| %>
 
+    <p><%="#{index}."%>
+     <%= answer.description %>
 
-<h2><%= @question.inquiry %></h2>
+    </p>
+<%end%> 
+<br>
+<br>
 
 <p>
     <form action="/questions/<%=@question.id%>/answers" method="POST"> 
@@ -14,6 +23,14 @@
         <br>
         <br>
         <input type="submit" input type="submit" /> 
+    </form>
+</p>
+<p>
+    <form action="/logout" method="GET"> 
+        <br>
+        <label for name= "logout">Click below to Logout:</label>
+        <br>
+        <input type="submit" value="logout" /> 
     </form>
 </p>
     
