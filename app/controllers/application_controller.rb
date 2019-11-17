@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "auth_demo_lv"
+    register Sinatra::Flash
   end
 
   helpers do 
@@ -31,6 +32,11 @@ class ApplicationController < Sinatra::Base
 
     def logout!
       session.clear
+    end 
+
+    def redirect_to_log_in
+      flash[:error] = "You must be logged in to do that!"
+      redirect "login" unless logged_in?
     end 
 
   end
