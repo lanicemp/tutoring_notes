@@ -1,1 +1,8 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit the question below here.</h1>
+<h2><%= @question.inquiry%></h2>
+
+<form action="/questions/<%=@question.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <input type="text" name="inquiry" value="<%@question.inquiry%>">
+  <input type="submit" value="submit">
+</form>
