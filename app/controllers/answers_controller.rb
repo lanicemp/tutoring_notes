@@ -18,6 +18,7 @@ class AnswersController < ApplicationController
 
   # POST: /answers
   post "/questions/:question_id/answers" do
+
     #@question = (params[:question_id])
     @question = Question.find_by id: params[:question_id]
     
