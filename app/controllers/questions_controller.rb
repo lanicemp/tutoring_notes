@@ -2,8 +2,9 @@ class QuestionsController < ApplicationController
 
   # GET: /questions index
   get "/questions" do
-    
+    flash[:success] = "Welcome you have sucessfully logged in!"
     if logged_in?
+      
       @questions = Question.all 
       if @questions.empty?
         redirect "/questions/new"
@@ -27,6 +28,7 @@ class QuestionsController < ApplicationController
 
   # POST: /questions
   post "/questions" do
+    
     @question = Question.new(inquiry: params[:question])
     @question.student_user = current_user
     if logged_in? && @question.save
@@ -52,17 +54,24 @@ class QuestionsController < ApplicationController
 
   # GET: /questions/5/edit
   get "/questions/:id/edit" do
-    if logged_in?
+    @question = Question.find_by(:id => params[:id])
+    if logged_in? && @question.try(:student_user_id) == current_user.id 
+      @question 
       erb :"/questions/edit.html"
     else 
-      erb :'/'
+      
+      flash[:error] = "Only the creator of the question can edit!"
+      redirect "/questions/#{@question.id}"
     end 
   end
 
   # PATCH: /questions/5
   patch "/questions/:id" do
-    if logged_in?
-      redirect "/questions/:id"
+    redirect_to_log_in
+    @question = Question.find_by(:id => params[:id])
+    if logged_in? && @question.try(:student_user_id) == current_user.id
+      @question.update(inquiry:params[:inquiry])
+      redirect "/questions/#{@question.id}"
     else 
       erb :'/'
     end 
