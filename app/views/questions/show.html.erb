@@ -1,4 +1,9 @@
 <h1><%= @question.inquiry %></h1>
+<form action="/questions/<%=@question.id%>/edit" method="GET"> 
+
+        <input type="submit" value="Edit Question" /> 
+</form>
+<br>
 <br>
 <h2>Answers and Comments Below</h2>
 <br>
@@ -6,23 +11,22 @@
 
     <p><%="#{index}."%>
      <%= answer.description %>
-
     </p>
 <%end%> 
+
 <br>
 <br>
 
 <p>
     <form action="/questions/<%=@question.id%>/answers" method="POST"> 
         <input type="hidden" name="question_id" value="<%=@question.id%>"/
-        
         <br>
         <label for name= "description">Post your answer or comment:</label>
         <br>
         <textarea name="description" rows="3"></textarea>
         <br>
         <br>
-        <input type="submit" input type="submit" /> 
+        <input type="submit" value="submit" /> 
     </form>
 </p>
 <p>
