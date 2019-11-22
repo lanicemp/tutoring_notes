@@ -9,6 +9,7 @@ class StudentUser < ActiveRecord::Base
     validates :name, :email, presence: true
     validates :email, :username,  uniqueness: true 
     has_secure_password
+    #macro
     
     
 end
