@@ -6,3 +6,9 @@
   <input type="text" name="inquiry" value="<%@question.inquiry%>">
   <input type="submit" value="submit">
 </form>
+<br>
+
+<form action="/questions/<%=@question.id%>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Question">
+</form>
