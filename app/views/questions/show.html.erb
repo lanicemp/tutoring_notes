@@ -3,6 +3,7 @@
 
         <input type="submit" value="Edit Question" /> 
 </form>
+
 <br>
 <br>
 <h2>Answers and Comments Below</h2>
@@ -10,7 +11,7 @@
 <% @question.answers.each.with_index(1) do |answer, index| %>
 
     <p><%="#{index}."%>
-     <%= answer.description %>
+    <a href="/answers/<%=answer.id%>"> <%= answer.description %> </a>
     </p>
 <%end%> 
 
