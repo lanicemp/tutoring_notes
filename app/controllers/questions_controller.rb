@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
 
   # GET: /questions index
   get "/questions" do
-    flash[:success] = "Welcome you have sucessfully logged in!"
+    # flash[:success] = "Welcome you have sucessfully logged in!"
     if logged_in?
       
       @questions = Question.all 
@@ -59,8 +59,8 @@ class QuestionsController < ApplicationController
       @question 
       erb :"/questions/edit.html"
     else 
-      
-      flash[:error] = "Only the creator of the question can edit!"
+      #authorize_record(record)
+      flash[:error] = "Only the creator of the question can edit this question!"
       redirect "/questions/#{@question.id}"
     end 
   end
@@ -79,10 +79,15 @@ class QuestionsController < ApplicationController
 
   # DELETE: /questions/5/delete
   delete "/questions/:id/delete" do
-    if logged_in?
+    @question = Question.find_by(:id => params[:id])
+    if logged_in? && @question.try(:student_user_id) == current_user.id
+      @question = Question.find_by(:id => params[:id])
+      @question.delete
+      flash[:success] = "Your question has been sucessfully deleted!"
       redirect "/questions"
     else 
-      erb :'/'
+      flash[:error] = "Only the creator of the question can delete this question!"
+      redirect "/questions"
     end 
   end
 end
