@@ -39,6 +39,13 @@ class ApplicationController < Sinatra::Base
       redirect "login" unless logged_in?
     end 
 
+    # def authorize_record(record)
+    #   binding.pry 
+    #   if current_user != record.student_user
+    #     flash[:error] = "You do not have permission to edit this record"
+    #   end 
+    # end 
+
   end
 
 end 

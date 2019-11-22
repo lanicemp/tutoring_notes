@@ -27,7 +27,6 @@ class AnswersController < ApplicationController
       @answer.question = @question
       @answer.student_user = current_user
       @answer.save
-      binding.pry
 
       #@answer = Answer.create(description: params[:description], question_id: params[:question_id])
       redirect "/questions/#{@question.id}"
@@ -38,6 +37,8 @@ class AnswersController < ApplicationController
 
   # GET: /answers/5
   get "/answers/:id" do
+    
+    @answer = Answer.find_by(:question_id => params[:id])
     erb :"/answers/show.html"
   end
 
