@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     post "/sessions" do 
         login(params[:email], params[:password])
-
+        flash[:success] = "Welcome you have sucessfully logged in!"
         redirect "/questions"
     end 
 
